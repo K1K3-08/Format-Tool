@@ -21,6 +21,9 @@ Finish V1 by the 17th !!
 
 Once v1 is done present it and get feedback on it, ask for desired features, other formats, and propose your ideas.
 
+-Ask for other formats to convert FROM and implement them
+-Ask if there are other formats to convert TO
+
 Future versions ideas:
 
 	-Ask if observation are different every time or do they stay for the most part the same DDWOFB
