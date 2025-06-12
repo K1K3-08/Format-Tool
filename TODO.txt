@@ -21,17 +21,21 @@ Finish V1 by the 17th !!
 
 Once v1 is done present it and get feedback on it, ask for desired features, other formats, and propose your ideas.
 
-Future versions ideas(do not develop w/o feedback):
+Future versions ideas:
 
-	-Ask if observation are different every time or do they stay for the most part the same
+	-Ask if observation are different every time or do they stay for the most part the same DDWOFB
 		-Taking note of the observations made to the manufacturing order and pair them with their corresponding product name and product code and saving that so the observation is added by default next time
 		-Adding observations on the app so they can be recorded
-	-Ask how shipping dates are decided and possibly automate it
+	-Ask how shipping dates are decided and possibly automate it DDWOFB
 		-Add option to edit shipping date on the app
 	-Auto updates so I can update the app remotely and resolve issues
 		-git pull of compiled files? TBD
-	-SAE integration TBD
+	-SAE integration TBD DDWOFB
 		-SAE model generation?
 		-SAE api usage?
-	-Ask how manufacturing orders are categorized
+	-Ask how manufacturing orders are categorized DDWOFB
 		-is it one by purchase order or is it multiple that get separated by product type	
+	-Pretty UI maybe? TBD
+	-Add an easy way to send reports and suggestions
+		-set it up so I can ACTUALLY be notified and work on it, maybe github issue sender?
+
