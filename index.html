@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <style type="text/css">
+        body {
+            color: #333;
+            font-size: 14pt;
+        }
+
+        h1 {
+            font-size: 24pt;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Herramienta</h1>
+
+<button onclick="openFolder()">Seleccionar Archivo</button>
+<button onclick="doStuff()">Convertir</button>
+ <label for="formato">Elige tu formato:</label>
+
+<select name="formato" id="formato">
+  <option value="SMART">SMART</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select> 
+<div id="open-folder-container"></div>
+<div id="stuff-container"></div>
+<div id="json-container"></div>
+
+<!--<div style="text-align: center; margin-top: 50px;">
+    <a href="http://mbsy.co/gHVfC" target="_blank" style="outline:none;border:none;" onclick="openLink(event)">
+      <img src="https://ambassador-api.s3.amazonaws.com/uploads/marketing/11948/2016_11_29_21_53_43.png" alt="DreamHost" border="0" />
+    </a>
+</div>-->
+
+
+<script>
+    window.token = '{{ token }}';
+    // Perform background initialization
+    doAjax("/init", "POST");
+
+    function getMethods(obj) {
+      var result = [];
+      for (var id in obj) {
+        try {
+          if (typeof(obj[id]) == "function") {
+            result.push(id + ": " + obj[id].toString());
+          }
+        } catch (err) {
+          result.push(id + ": inaccessible");
+        }
+      }
+      return result;
+}
+
+    function openFolderHandler() {
+        if (this.responseText) {
+            var response = JSON.parse(this.responseText);
+            document.getElementById("open-folder-container").innerHTML = 'Archivo seleccionado: ' + response.directory;
+        }
+    }
+
+    function doStuffHandler(response) {
+        if (this.responseText) {
+            var response = JSON.parse(this.responseText);
+            document.getElementById("stuff-container").innerHTML = response.result;
+        }
+
+    }
+
+    function openFolder() {
+        doAjax("/choose/path", "POST", openFolderHandler);
+    }
+
+    function doStuff() {
+        var request = {formato: document.getElementById("formato").value};
+        doAjax("/do/stuff", "POST", doStuffHandler, request);
+    }
+
+    function toggleFullscreen() {
+        doAjax("/fullscreen", "POST", doStuffHandler);
+    }
+
+    function openLink(e) {
+        e.preventDefault()
+        var request = {url: e.currentTarget.href}
+        doAjax("/open-url", "POST", false, request)
+    }
+
+    // From https://gist.github.com/dharmavir/936328
+    function getHttpRequestObject()
+    {
+        // Define and initialize as false
+        var xmlHttpRequst = false;
+
+        // Mozilla/Safari/Non-IE
+        if (window.XMLHttpRequest)
+        {
+            xmlHttpRequst = new XMLHttpRequest();
+        }
+        // IE
+        else if (window.ActiveXObject)
+        {
+            xmlHttpRequst = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        return xmlHttpRequst;
+    }
+
+    // Does the AJAX call to URL specific with rest of the parameters
+    function doAjax(url, method, responseHandler, data) {
+        var xhr = getHttpRequestObject();
+        xhr.open(method, url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        // Always include the token
+        if (!data) data = {};
+        data.token = window.token;
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && responseHandler) {
+                responseHandler.call(xhr, xhr.responseText);
+            }
+        };
+        xhr.send(JSON.stringify(data));
+    }
+</script>
+</body>
+</html>
