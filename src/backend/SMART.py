@@ -3,12 +3,16 @@
 import pandas as pd
 import xlsxwriter as xw
 from IPython.display import display
+import os
 
-writer = pd.ExcelWriter("data.xlsx", engine="xlsxwriter")
+dirname = os.path.dirname(__file__)
+root = dirname.split('\\')[0] + '\\' + dirname.split('\\')[1] + '\\' + dirname.split('\\')[2] + '\\' + dirname.split('\\')[3] + '\\' + dirname.split('\\')[4] + '\\' + dirname.split('\\')[5] + '\\'
+
+writer = pd.ExcelWriter(os.path.join(root,"out/data.xlsx"), engine="xlsxwriter")
 
 itr =0
 
-df = pd.read_excel(r"C:\Users\Kike H\Downloads\10001990-100 OC IXTA JRZ.XLS")
+df = pd.read_excel(r"C:\Users\Kike H\Downloads\10001991-100 OC IXTA JRZ.XLS")
 cleandf = df.dropna(how='all').dropna(axis='columns',how='all').dropna(subset=df.columns[0])
 
 headInd = cleandf[cleandf[cleandf.columns[cleandf.isin(['LINEA']).any(bool_only=True)][0]]=='LINEA'].index[0]
@@ -117,8 +121,8 @@ ws1.set_column(max_col-1,max_col+2, 15,f1)
 ws1.write_formula(xw.utility.xl_rowcol_to_cell(max_row+6, max_col-1),"{=SUM("+xw.utility.xl_range(7,max_col-1,max_row+5, max_col+1)+")}",f6)
 ws1.write_formula(xw.utility.xl_rowcol_to_cell(max_row+6, max_col),"{=SUM("+xw.utility.xl_range(7,max_col,max_row+5, max_col)+")}",f6)
 
-ws1.insert_image('A1', 'FLIX.png')
-ws1.insert_image('I1','SMART.png')
+ws1.insert_image('A1', os.path.join(root,'assets/FLIX.png'))
+ws1.insert_image('I1',os.path.join(root,'assets/SMART.png'))
 
 ws1.autofit()
 
