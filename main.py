@@ -25,5 +25,5 @@ if __name__ == '__main__':
         time.sleep(1)  # Wait for Flask to start
 
         webview.settings['ALLOW_DOWNLOADS'] = True
-        window = webview.create_window('My first pywebview application', 'http://127.0.0.1:5000/')
+        window = webview.create_window('Herramienta', 'http://127.0.0.1:5000/')
         webview.start()

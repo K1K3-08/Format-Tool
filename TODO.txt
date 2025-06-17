@@ -1,7 +1,5 @@
 TODO:
 
-Finish V1 by the 17th !!
-
 -V1 req:
 
 	-Format converter//
@@ -10,16 +8,16 @@ Finish V1 by the 17th !!
 		-Pass only relevant information to the excel with the manufacturing order (Use example manufacturing order)//
 
 
-	-UI w pywebview==
-		-Load File w sys dialog
-		-Select format to convert to another selected format
-		-Download converted file w sys dialog
+	-UI w pywebview//
+		-Load File w sys dialog//
+		-Select format to convert to another selected format//
+		-Download converted file w sys dialog//
 
-	-Compile app
+	-Compile app//
 
 
 
-Once v1 is done present it and get feedback on it, ask for desired features, other formats, and propose your ideas.
+Once v1 is done present it and get feedback on it, ask for desired features, other formats, and propose your ideas.!!!!!
 
 -Ask for other formats to convert FROM and implement them
 -Ask if there are other formats to convert TO

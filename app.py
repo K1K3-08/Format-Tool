@@ -6,6 +6,7 @@ import shutil
 import SMART
 import os
 import time
+import subprocess
 
 def initialize():
     # perform heavy stuff here
@@ -17,7 +18,8 @@ def do_stuff():
     with open('directory.pkl','rb') as f:
         dir = pickle.load(f)
     out = SMART.run(dir)
-    response = ['This is response from Python backend', out[0], out[1]]
+    response = ['Conversion exitosa', out[0], out[1]]
+    subprocess.run(["attrib","+H","directory.pkl"],check=True)
     return response
 
 def load_dir(dir):
