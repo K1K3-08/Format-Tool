@@ -1,6 +1,6 @@
 TODO:
 
--V1 req:
+-V1 req://
 
 	-Format converter//
 		-Open xls file and convert to a dataframe //
@@ -18,6 +18,8 @@ TODO:
 
 
 Once v1 is done present it and get feedback on it, ask for desired features, other formats, and propose your ideas.!!!!!
+
+-Staging branch?
 
 -Ask for other formats to convert FROM and implement them
 -Ask if there are other formats to convert TO
