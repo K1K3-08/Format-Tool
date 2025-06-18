@@ -15,18 +15,17 @@ def initialize():
 
 def do_stuff():
     # do whatever you need to do
-    with open('directory.pkl','rb') as f:
-        dir = pickle.load(f)
-    out = SMART.run(dir)
+    out = SMART.run(directory)
     response = ['Conversion exitosa', out[0], out[1]]
     subprocess.run(["attrib","+H","directory.pkl"],check=True)
     return response
 
 def load_dir(dir):
     # Load the directory
-    with open('directory.pkl', 'wb') as f:
-        pickle.dump(dir, f)
-        return
+    global directory
+    directory = dir
+    return
+
 def replace_dummy(dest):
     print(dest+ " is the destination file")
     time.sleep(1)  # Wait for the file to be ready
