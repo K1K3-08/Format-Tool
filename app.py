@@ -1,12 +1,12 @@
 """
 Application stub
 """
-import pickle
+
 import shutil
 import SMART
 import os
 import time
-import subprocess
+
 
 def initialize():
     # perform heavy stuff here
@@ -17,13 +17,12 @@ def do_stuff():
     # do whatever you need to do
     out = SMART.run(directory)
     response = ['Conversion exitosa', out[0], out[1]]
-    subprocess.run(["attrib","+H","directory.pkl"],check=True)
     return response
 
 def load_dir(dir):
     # Load the directory
     global directory
-    directory = dir
+    directory =  dir
     return
 
 def replace_dummy(dest):
