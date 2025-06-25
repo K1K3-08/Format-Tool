@@ -10,7 +10,7 @@ import webview
 
 project_root = os.path.abspath(os.path.dirname(__file__))
 
-server = Flask(__name__, static_folder=project_root, template_folder=os.path.join(project_root,'..\\assets\\'))
+server = Flask(__name__, static_folder=project_root, template_folder=os.path.join(project_root,'..\\_internal\\assets\\'))
 server.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1  # disable caching
 
 

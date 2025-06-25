@@ -30,4 +30,4 @@ def replace_dummy(dest):
     time.sleep(1)  # Wait for the file to be ready
     dirname = os.path.dirname(__file__)
     # Replace the dummy file with the actual file
-    shutil.copyfile(os.path.join(dirname, "..\\data.xlsx"), dest)
+    shutil.copyfile(os.path.join(dirname, "..\\_internal\\data.xlsx"), dest)
