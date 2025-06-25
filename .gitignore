@@ -10,3 +10,4 @@ data.xlsx
 *.spec
 *.pyc
 pyinstaller.txt
+*.dll

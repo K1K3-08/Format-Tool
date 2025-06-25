@@ -1,5 +1,5 @@
 """ A wrapper for the WinSparkle project
-
+    Updated by Kike
 """
 from ctypes import cdll, c_char_p, c_wchar_p, c_int16, c_int64, CFUNCTYPE
 import os
@@ -9,19 +9,19 @@ import platform
 # this python is 64bit or 32bit? Need to know to choose the right library to load
 architecture, _ = platform.architecture()
 if architecture == "64bit":
-    LIB_FOLDER = "libs" + os.sep + "x64"
+    LIB_FOLDER = "lib" + os.sep + "x64"
 elif architecture == "32bit":
-    LIB_FOLDER = "libs" + os.sep + "x86"
+    LIB_FOLDER = "lib" + os.sep + "x86"
 
 
 # compatibility with pyinstaller, else running live
 if getattr( sys, 'frozen', False ):
-    THIS_DIRECTORY = sys._MEIPASS
-    DLL_FILE = os.path.join(THIS_DIRECTORY, "WinSparkle")
+    THIS_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
+    DLL_FILE = os.path.join(THIS_DIRECTORY, "..\\_internal\\assets\\", LIB_FOLDER, "WinSparkle")
 
 else:
     THIS_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
-    DLL_FILE = os.path.join(THIS_DIRECTORY, LIB_FOLDER, "WinSparkle")
+    DLL_FILE = os.path.join(THIS_DIRECTORY, "..\\assets\\", LIB_FOLDER, "WinSparkle")
 
 # documentation and wheel creation is done on linux, if this is linux then
 # dont try and load the DLL.
