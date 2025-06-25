@@ -95,7 +95,7 @@ def win_sparkle_set_app_details(company_name, app_name, app_version):
 
     Normally, these are taken from VERSIONINFO/StringFileInfo resources,
     but if your application doesn't use them for some reason, using this
-    function is an alternative.
+    function as an alternative.
 
     note  company_name and app_name are used to determine the location
           of WinSparkle settings in registry.

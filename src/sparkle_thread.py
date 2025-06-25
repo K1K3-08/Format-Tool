@@ -30,7 +30,7 @@ def shutdown():
     print("Safe to shutdown before installing")
 
 
-def main():
+def sparkle():
 
     # register callbacks
     notpywinsparkle.win_sparkle_set_did_find_update_callback(found_update)
@@ -42,7 +42,7 @@ def main():
     # set application details
     update_url = "https://winsparkle.org/example/appcast.xml"
     notpywinsparkle.win_sparkle_set_appcast_url(update_url)
-    notpywinsparkle.win_sparkle_set_app_details("VendorName", "TestApp1", "1.0.0")
+    notpywinsparkle.win_sparkle_set_app_details("KikeH", "Format-Tool", "0.2.0")
 
     if os.path.isfile('dsa_pub.pem'):
         with open('dsa_pub.pem', 'r') as file:
