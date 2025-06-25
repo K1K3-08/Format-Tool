@@ -3,14 +3,14 @@ import os
 import webbrowser
 from functools import wraps
 
-import app
+import app as app
 from flask import Flask, jsonify, render_template, request
 
 import webview
 
 project_root = os.path.abspath(os.path.dirname(__file__))
 
-server = Flask(__name__, static_folder=project_root, template_folder=project_root)
+server = Flask(__name__, static_folder=project_root, template_folder=os.path.join(project_root,'..\\assets\\'))
 server.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1  # disable caching
 
 
