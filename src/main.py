@@ -8,6 +8,7 @@ from server import server
 
 import webview
 
+
 logger = logging.getLogger(__name__)
 
 
