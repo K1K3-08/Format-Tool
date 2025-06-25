@@ -4,12 +4,17 @@ from io import StringIO
 import threading
 import time
 
+
 from server import server
+from sparkle_thread import sparkle
+
 
 import webview
 
 
 logger = logging.getLogger(__name__)
+
+
 
 
 
@@ -19,9 +24,10 @@ def run_flask():
 if __name__ == '__main__':
     stream = StringIO()
     with redirect_stdout(stream):
-
+        sparkle_thread = threading.Thread(target=sparkle, daemon=True)
         flask_thread = threading.Thread(target=run_flask, daemon=True)
         flask_thread.start()
+        sparkle_thread.start()
 
         time.sleep(1)  # Wait for Flask to start
 
