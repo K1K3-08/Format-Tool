@@ -40,7 +40,7 @@ def sparkle():
     notpywinsparkle.win_sparkle_set_shutdown_request_callback(shutdown)
 
     # set application details
-    update_url = "https://winsparkle.org/example/appcast.xml"
+    update_url = "https://raw.githubusercontent.com/K1K3-08/Format-Tool/refs/heads/staging/sparklecast.xml"
     notpywinsparkle.win_sparkle_set_appcast_url(update_url)
     notpywinsparkle.win_sparkle_set_app_details("KikeH", "Format-Tool", "0.2.0")
 
