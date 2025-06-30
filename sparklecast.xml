@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:sparkle="https://raw.githubusercontent.com/K1K3-08/Format-Tool/refs/heads/main/sparklecast.xml">
+    <channel>
+        <title>Format-Tool WinSparkle AppCast</title>
+        <description>Most recent updates to Format-Tool</description>
+        <language>en</language>
+        <item>
+            <title>Version 0.2.0</title>
+            <sparkle:version>0.2.0</sparkle:version>
+            <sparkle:releaseNotesLink>
+                https://your_domain/your_path/release_notes.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Mon, 01 Jan 2024 12:00:00 +0000</pubDate>
+            <enclosure url="https://your_domain/your_path/setup.exe"
+                       sparkle:dsaSignature="MEQCICh10SofkNHa5iJgVWDi2O8RBYyN+nxkFEL7u/tBuWboAiB6VOV/WQMRJE+kRoICZXAhq5b24WkgqcDs0z7gyBkGVw=="
+                       length="0"
+                       type="application/octet-stream" />
+            <sparkle:installerArguments>/SILENT /SP /NOICONS</sparkle:installerArguments>
+        </item>
+    </channel>
+</rss>

@@ -1,0 +1,1 @@
+"Place latest Winsparkle 32-bit dll here"
