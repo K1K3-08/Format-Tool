@@ -1,6 +1,7 @@
 import notpywinsparkle
 import os
 import time
+import sys
 
 def no_update_found():
     """ when no update has been found, close the updater"""
@@ -25,7 +26,7 @@ def update_cancelled():
 
 def shutdown():
     """ The installer is being launched signal the updater to shutdown """
-
+    sys.exit(0)
     # actually shutdown the app here
     print("Safe to shutdown before installing")
 
@@ -40,20 +41,20 @@ def sparkle():
     notpywinsparkle.win_sparkle_set_shutdown_request_callback(shutdown)
 
     # set application details
-    update_url = "https://raw.githubusercontent.com/K1K3-08/Format-Tool/refs/heads/staging/sparklecast.xml"
+    update_url = "https://raw.githubusercontent.com/K1K3-08/Format-Tool/refs/heads/main/sparklecast.xml"
     notpywinsparkle.win_sparkle_set_appcast_url(update_url)
     notpywinsparkle.win_sparkle_set_app_details("KikeH", "Format-Tool", "0.2.0")
 
-    if os.path.isfile('dsa_pub.pem'):
-        with open('dsa_pub.pem', 'r') as file:
+    if os.path.isfile('eddsa_pub.pem'):
+        with open('eddsa_pub.pem', 'r') as file:
             pub_key = file.read()
-        notpywinsparkle.win_sparkle_set_dsa_pub_pem(pub_key)
+        notpywinsparkle.win_sparkle_set_eddsa_public_key(pub_key)
 
     # initialize
     notpywinsparkle.win_sparkle_init()
 
     # check for updates
-    notpywinsparkle.win_sparkle_check_update_with_ui()
+    #notpywinsparkle.win_sparkle_check_update_with_ui()
 
     # alternatively you could check for updates in the 
     # background silently

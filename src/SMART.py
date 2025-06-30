@@ -121,8 +121,8 @@ def run(dir):
     ws1.write_formula(xw.utility.xl_rowcol_to_cell(max_row+6, max_col-1),"{=SUM("+xw.utility.xl_range(7,max_col-1,max_row+5, max_col+1)+")}",f6)
     ws1.write_formula(xw.utility.xl_rowcol_to_cell(max_row+6, max_col),"{=SUM("+xw.utility.xl_range(7,max_col,max_row+5, max_col)+")}",f6)
 
-    ws1.insert_image('A1', os.path.join(dirname,'..\\_internal\\assets\\FLIX.png'))
-    ws1.insert_image('I1', os.path.join(dirname,'..\\_internal\\assets\\SMART.png'))
+    ws1.insert_image('A1', os.path.join(dirname,'..\\_internal\\assets\\images\\FLIX.png'))
+    ws1.insert_image('I1', os.path.join(dirname,'..\\_internal\\assets\\images\\SMART.png'))
 
     ws1.autofit()
 
