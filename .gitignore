@@ -11,3 +11,6 @@ data.xlsx
 *.pyc
 pyinstaller.txt
 *.dll
+*.iss
+/Misc
+LICENSE.txt
