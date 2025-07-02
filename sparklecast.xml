@@ -8,12 +8,26 @@
             <title>Version 0.2.0</title>
             <sparkle:version>0.2.0</sparkle:version>
             <sparkle:releaseNotesLink>
-                https://your_domain/your_path/release_notes.html
+                
             </sparkle:releaseNotesLink>
             <pubDate>Mon, Jun 30 2025 12:00:00 +0000</pubDate>
             <enclosure url="https://github.com/K1K3-08/Format-Tool/releases/download/v0.2.0/setup.exe"
                        sparkle:edSignature="1XK8RkRrAydaPMlQKNRo8eH+KjyhhY13swXQ5LqrSXq3khV4PRUCYk5W8nkHdP9ENiOqMImlD1zaIHyPbU/oBg==" 
                        length="38826663"
+                       type="application/octet-stream" />
+            <sparkle:installerArguments>/SILENT /SP /NOICONS</sparkle:installerArguments>
+        </item>
+
+        <item>
+            <title>Version 0.2.1</title>
+            <sparkle:version>0.2.1</sparkle:version>
+            <sparkle:releaseNotesLink>
+                
+            </sparkle:releaseNotesLink>
+            <pubDate>Wed, Jul 2 2025 12:00:00 +0000</pubDate>
+            <enclosure url="https://github.com/K1K3-08/Format-Tool/releases/download/v0.2.1/setup.exe"
+                       sparkle:edSignature="0iYyywX3KseVcVway5FMon4QWtdWSl9x63x4aj1FVRufY0QaX0bIJ4fOxyW7YHqrfUDGSpMzFKVOLZ97AAnfDw=="
+                       length="38827613"
                        type="application/octet-stream" />
             <sparkle:installerArguments>/SILENT /SP /NOICONS</sparkle:installerArguments>
         </item>
