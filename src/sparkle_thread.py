@@ -43,12 +43,10 @@ def sparkle():
     # set application details
     update_url = "https://raw.githubusercontent.com/K1K3-08/Format-Tool/refs/heads/main/sparklecast.xml"
     notpywinsparkle.win_sparkle_set_appcast_url(update_url)
-    notpywinsparkle.win_sparkle_set_app_details("KikeH", "Format-Tool", "0.2.0")
+    notpywinsparkle.win_sparkle_set_app_details("KikeH", "Format-Tool", "0.2.1")
 
-    if os.path.isfile('eddsa_pub.pem'):
-        with open('eddsa_pub.pem', 'r') as file:
-            pub_key = file.read()
-        notpywinsparkle.win_sparkle_set_eddsa_public_key(pub_key)
+    
+    notpywinsparkle.win_sparkle_set_eddsa_public_key("xwpakLMxVqP+juQ/MUmebiQPPuFwLTohmE6WIQBpOb8=")
 
     # initialize
     notpywinsparkle.win_sparkle_init()
