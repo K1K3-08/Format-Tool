@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:sparkle="https://k1k3-08.github.io/Format-Tool/sparklecast.xml">
+<rss version="2.0" xmlns:sparkle="https://k1k3-08.github.io/Format-Tool/">
     <channel>
         <title>Format-Tool WinSparkle AppCast</title>
+        <link>https://k1k3-08.github.io/Format-Tool/sparklecast.xml</link>
         <description>Most recent updates to Format-Tool</description>
         <language>en</language>
         <item>
