@@ -41,7 +41,7 @@ def sparkle():
     notpywinsparkle.win_sparkle_set_shutdown_request_callback(shutdown)
 
     # set application details
-    update_url = "https://raw.githubusercontent.com/K1K3-08/Format-Tool/refs/heads/main/sparklecast.xml"
+    update_url = "https://k1k3-08.github.io/Format-Tool/sparklecast.xml"
     notpywinsparkle.win_sparkle_set_appcast_url(update_url)
     notpywinsparkle.win_sparkle_set_app_details("KikeH", "Format-Tool", "0.2.1")
 
@@ -49,14 +49,15 @@ def sparkle():
     notpywinsparkle.win_sparkle_set_eddsa_public_key("xwpakLMxVqP+juQ/MUmebiQPPuFwLTohmE6WIQBpOb8=")
 
     # initialize
+    notpywinsparkle.win_sparkle_set_automatic_check_for_updates(True)
     notpywinsparkle.win_sparkle_init()
 
     # check for updates
-    #notpywinsparkle.win_sparkle_check_update_with_ui()
+    notpywinsparkle.win_sparkle_check_update_with_ui()
 
     # alternatively you could check for updates in the 
     # background silently
-    notpywinsparkle.win_sparkle_check_update_without_ui()
+    #notpywinsparkle.win_sparkle_check_update_without_ui()
 
     # dont do it this way, just an example to keep the thread running
     while True:
