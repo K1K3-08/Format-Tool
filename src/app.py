@@ -13,10 +13,13 @@ def initialize():
     return True
 
 
-def do_stuff():
+def do_stuff(formato):
     # do whatever you need to do
-    out = SMART.run(directory)
-    response = ['Conversion exitosa', out[0], out[1]]
+    if formato == 'SMART':
+        out = SMART.run(directory)
+        response = ['Conversion exitosa', out[0], out[1]]
+    else:
+        return
     return response
 
 def load_dir(dir):

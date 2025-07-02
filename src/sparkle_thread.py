@@ -54,7 +54,7 @@ def sparkle():
     notpywinsparkle.win_sparkle_init()
 
     # check for updates
-    notpywinsparkle.win_sparkle_check_update_with_ui()
+    notpywinsparkle.win_sparkle_check_update_without_ui()
 
     # alternatively you could check for updates in the 
     # background silently

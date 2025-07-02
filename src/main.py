@@ -17,8 +17,8 @@ def run_flask():
     server.run(host='127.0.0.1', port=5000, threaded=True, use_reloader=False,debug=True)
 
 if __name__ == '__main__':
-    stream = StringIO()
-    with redirect_stdout(stream):
+    #stream = StringIO()
+    #with redirect_stdout(stream):
         sparkle_thread = threading.Thread(target=sparkle, daemon=True)
         flask_thread = threading.Thread(target=run_flask, daemon=True)
         flask_thread.start()

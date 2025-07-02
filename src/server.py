@@ -119,11 +119,13 @@ def open_url():
 @server.route('/do/stuff', methods=['POST'])
 @verify_token
 def do_stuff():
-    result = app.do_stuff()
-    file_types = ('Excel file (*.xlsx)', 'All files (*.*)')
-    save = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=result[2], save_filename='output.xlsx',file_types=file_types)
-    app.replace_dummy(save)  # Replace the dummy file with the actual file
+    data = request.get_json(force=True, silent=True) or {}
+    format = data.get('formato')
+    result = app.do_stuff(format)
     if result:
+        file_types = ('Excel file (*.xlsx)', 'All files (*.*)')
+        save = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=result[2], save_filename='output.xlsx',file_types=file_types)
+        app.replace_dummy(save)  # Replace the dummy file with the actual file
         response = {'status': 'ok', 'result': result[0]}
     else:
         response = {'status': 'error'}
