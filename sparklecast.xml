@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:sparkle="https://k1k3-08.github.io/Format-Tool/">
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
     <channel>
         <title>Format-Tool WinSparkle AppCast</title>
         <link>https://k1k3-08.github.io/Format-Tool/sparklecast.xml</link>
