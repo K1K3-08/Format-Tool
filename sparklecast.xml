@@ -7,10 +7,9 @@
         <language>en</language>
         <item>
             <title>Version 0.2.0</title>
+            <link>https://github.com/K1K3-08/Format-Tool</link>
+            <description>Initial release of Format-Tool with basic functionality.</description>
             <sparkle:version>0.2.0</sparkle:version>
-            <sparkle:releaseNotesLink>
-                
-            </sparkle:releaseNotesLink>
             <pubDate>Mon, Jun 30 2025 12:00:00 +0000</pubDate>
             <enclosure url="https://github.com/K1K3-08/Format-Tool/releases/download/v0.2.0/setup.exe"
                        sparkle:edSignature="1XK8RkRrAydaPMlQKNRo8eH+KjyhhY13swXQ5LqrSXq3khV4PRUCYk5W8nkHdP9ENiOqMImlD1zaIHyPbU/oBg==" 
@@ -22,9 +21,8 @@
         <item>
             <title>Version 0.2.1</title>
             <sparkle:version>0.2.1</sparkle:version>
-            <sparkle:releaseNotesLink>
-                
-            </sparkle:releaseNotesLink>
+            <link>https://github.com/K1K3-08/Format-Tool</link>
+            <description>Various bug fixes</description>
             <pubDate>Wed, Jul 2 2025 12:00:00 +0000</pubDate>
             <enclosure url="https://github.com/K1K3-08/Format-Tool/releases/download/v0.2.1/setup.exe"
                        sparkle:edSignature="0iYyywX3KseVcVway5FMon4QWtdWSl9x63x4aj1FVRufY0QaX0bIJ4fOxyW7YHqrfUDGSpMzFKVOLZ97AAnfDw=="
