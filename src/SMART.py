@@ -4,11 +4,24 @@ import pandas as pd
 import xlsxwriter as xw
 from IPython.display import display
 import os
+import sys
 
 def run(dir):
-    dirname = os.path.dirname(__file__)
+    """    This function processes an Excel file, cleans it, and writes the cleaned data to a new Excel file.
+    :param dir: The directory of the input Excel file.
+    :return: A list containing the path to the output Excel file and the original directory name.
+    """
+    # Determine the directory based on whether the script is frozen or not
+    
+    if getattr(sys, 'frozen', False):
+        dirname = os.path.join(os.path.abspath(os.path.dirname(__file__)))
+        temp_dir = os.path.join(os.environ['LOCALAPPDATA'], 'Format-Tool')
+        os.makedirs(temp_dir, exist_ok=True)
+    else:
+        dirname = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
+        temp_dir = dirname
 
-    writer = pd.ExcelWriter(os.path.join(dirname,"..\\_internal\\data.xlsx"), engine="xlsxwriter")
+    writer = pd.ExcelWriter(os.path.join(temp_dir,"data.xlsx"), engine="xlsxwriter")
 
     itr =0
 
@@ -121,8 +134,9 @@ def run(dir):
     ws1.write_formula(xw.utility.xl_rowcol_to_cell(max_row+6, max_col-1),"{=SUM("+xw.utility.xl_range(7,max_col-1,max_row+5, max_col+1)+")}",f6)
     ws1.write_formula(xw.utility.xl_rowcol_to_cell(max_row+6, max_col),"{=SUM("+xw.utility.xl_range(7,max_col,max_row+5, max_col)+")}",f6)
 
-    ws1.insert_image('A1', os.path.join(dirname,'..\\_internal\\assets\\images\\FLIX.png'))
-    ws1.insert_image('I1', os.path.join(dirname,'..\\_internal\\assets\\images\\SMART.png'))
+    ws1.insert_image('I1', os.path.join(dirname,'assets\\images\\SMART.png'))
+    ws1.insert_image('A1', os.path.join(dirname,'assets\\images\\FLIX.png'))
+    
 
     ws1.autofit()
 
@@ -160,4 +174,4 @@ def run(dir):
 
 
     writer.close()
-    return [(os.path.join(dirname,"..\\_internal\\data.xlsx")),dir.split('\\')[-1]]  # Return the path to the output file and the original directory name
+    return [(os.path.join(temp_dir,"\\data.xlsx")),dir.split('\\')[-1]]  # Return the path to the output file and the original directory name

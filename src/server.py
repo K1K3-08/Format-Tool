@@ -2,6 +2,7 @@ import json
 import os
 import webbrowser
 from functools import wraps
+from flask import request
 
 import sys
 
@@ -18,17 +19,25 @@ else:
     server = Flask(__name__, static_folder=project_root, template_folder=os.path.join(project_root,'..\\assets\\gui\\'))
 server.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1  # disable caching
 
+log_dir = os.path.join(os.environ['LOCALAPPDATA'], 'Format-Tool')
+os.makedirs(log_dir, exist_ok=True)
+log_path = os.path.join(log_dir, 'debug_log.txt')
 
-def verify_token(function):
-    @wraps(function)
+def log_debug(msg):
+    with open(log_path, "a", encoding="utf-8") as f:
+      f.write(msg + "\n")
+    pass
+    
+def verify_token(f):
+    @wraps(f)
     def wrapper(*args, **kwargs):
-        data = json.loads(request.data)
+        data = request.get_json(force=True, silent=True) or {}
         token = data.get('token')
-        if token == webview.token:
-            return function(*args, **kwargs)
-        else:
-            raise Exception('Authentication error')
-
+        if not token or token != webview.token:
+            log_debug(f"Received token: {token}\nExpected token: {webview.token}\n")
+            log_debug("Authentication error!\n")
+            return {"error": "Authentication error"}, 401
+        return f(*args, **kwargs)
     return wrapper
 
 

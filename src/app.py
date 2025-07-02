@@ -5,7 +5,7 @@ Application stub
 import shutil
 import SMART as SMART
 import os
-import time
+import sys
 
 
 def initialize():
@@ -26,8 +26,14 @@ def load_dir(dir):
     return
 
 def replace_dummy(dest):
-    print(dest+ " is the destination file")
-    time.sleep(1)  # Wait for the file to be ready
     dirname = os.path.dirname(__file__)
+    temp_dir = os.path.join(os.environ['LOCALAPPDATA'], 'Format-Tool')
     # Replace the dummy file with the actual file
-    shutil.copyfile(os.path.join(dirname, "..\\_internal\\data.xlsx"), dest)
+    if getattr(sys, 'frozen', False):
+        shutil.copyfile(os.path.join(temp_dir, "data.xlsx"), dest)
+
+    else:
+        shutil.copyfile(os.path.join(dirname, "..\\data.xlsx"), dest)
+
+
+    
