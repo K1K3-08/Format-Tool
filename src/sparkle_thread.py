@@ -1,5 +1,4 @@
 import notpywinsparkle
-import os
 import time
 import sys
 

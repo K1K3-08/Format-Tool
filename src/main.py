@@ -24,7 +24,7 @@ if __name__ == '__main__':
         flask_thread.start()
         sparkle_thread.start()
         time.sleep(1)  # Wait for Flask to start
-
+        
         menu = [
             wm.Menu(
                 'Menu',
@@ -35,3 +35,4 @@ if __name__ == '__main__':
         webview.settings['ALLOW_DOWNLOADS'] = True
         window = webview.create_window('Herramienta', 'http://127.0.0.1:5000/')
         webview.start(menu=menu)
+        

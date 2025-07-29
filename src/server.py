@@ -1,5 +1,6 @@
 import json
 import os
+import pandas as pd
 import webbrowser
 from functools import wraps
 from flask import request
@@ -123,11 +124,33 @@ def do_stuff():
     format = data.get('formato')
     result = app.do_stuff(format)
     if result:
-        file_types = ('Excel file (*.xlsx)', 'All files (*.*)')
-        save = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=result[2], save_filename='output.xlsx',file_types=file_types)
-        app.replace_dummy(save)  # Replace the dummy file with the actual file
-        response = {'status': 'ok', 'result': result[0]}
+        df = pd.DataFrame()
+        print("Result:", result)
+        df = result[1]
+        response = {
+            'status': 'ok', 
+            'columns': df.columns.tolist(),
+            'data': df.values.tolist()
+        }
     else:
         response = {'status': 'error'}
 
     return jsonify(response)
+
+
+
+@server.route('/convert', methods=['POST'])
+def convert():
+    data = request.get_json()
+    columns = data['columns']
+    rows = data['data']
+    df = pd.DataFrame(rows, columns=columns)
+
+    result = app.to_excel(df)
+    dir = app.get_dir()
+    print(dir)
+    file_types = ('Excel file (*.xlsx)', 'All files (*.*)')
+    save = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=dir, save_filename='output.xlsx',file_types=file_types)
+    app.replace_dummy(save)  # Replace the dummy file with the actual file
+
+    return jsonify({'result': 'success', 'output': save})
