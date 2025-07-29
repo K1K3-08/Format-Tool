@@ -144,7 +144,9 @@ def convert():
     data = request.get_json()
     columns = data['columns']
     rows = data['data']
-    df = pd.DataFrame(rows, columns=columns)
+    print ("Columns:", columns[1:])
+    print ("Rows:", rows)
+    df = pd.DataFrame(rows, columns=columns[1:])
 
     result = app.to_excel(df)
     dir = app.get_dir()

@@ -5,6 +5,7 @@ import xlsxwriter as xw
 from IPython.display import display
 import os
 import sys
+import pickle
 
 def run(dir):
     """    This function processes an Excel file, cleans it, and writes the cleaned data to a new Excel file.
@@ -48,8 +49,22 @@ def run(dir):
     BQT = pd.Series(blist,index=fdf.index)
     fdf.insert(loc=4, column='BQT', value=BQT)
     fdf.insert(len(fdf.columns), column='BQT.', value='')
-    fdf.insert(len(fdf.columns), column='CAJA.', value='')
+    fdf.insert(len(fdf.columns), column='CAJA.', value='')  
     fdf.insert(len(fdf.columns), column='OBSERVACIONES', value='')
+    fdf.insert(0, column='Tipo', value='flor')
+
+    dict = {}
+    if os.path.exists(os.path.join(temp_dir, "obsdict.pkl")):
+        with open(os.path.join(temp_dir, "obsdict.pkl"), 'rb') as f:
+            dict = pickle.load(f)
+    for i in fdf.index:
+        if fdf.at[i,'CODIGO DEL PRODUCTO'] in dict:
+            fdf.at[i,'Tipo'] = dict[fdf.at[i,'CODIGO DEL PRODUCTO']][0]
+            fdf.at[i,'OBSERVACIONES'] = dict[fdf.at[i,'CODIGO DEL PRODUCTO']][1]
+        else:
+            fdf.at[i,'Tipo'] = 'flor'
+            fdf.at[i,'OBSERVACIONES'] = ''
+        
 
     print("fdf:", fdf)
 

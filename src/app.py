@@ -7,6 +7,8 @@ import SMART as SMART
 import os
 import sys
 import df2xl
+import pandas as pd
+import obsdict
 
 
 def initialize():
@@ -26,6 +28,7 @@ def do_stuff(f):
     return response
 
 def to_excel(df):
+    obsdict.obsdict(df)
     out =  df2xl.run(df, formato)
     return out
     

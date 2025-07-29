@@ -195,8 +195,8 @@
         html += '<thead>';
         html += '<tr>';
         html += `<th style="text-align:center;" colspan="1">
-            <button onclick="setAllTipo('a')" style="background:#222;color:#fff;border:none;border-radius:8px;padding:0.3rem 0.8rem;font-size:0.95rem;cursor:pointer;">Todos 'a'</button>
-            <button onclick="setAllTipo('b')" style="background:#222;color:#fff;border:none;border-radius:8px;padding:0.3rem 0.8rem;font-size:0.95rem;cursor:pointer;">Todos 'b'</button>
+            <button onclick="setAllTipo('flor')" style="background:#222;color:#fff;border:none;border-radius:8px;padding:0.3rem 0.8rem;font-size:0.95rem;cursor:pointer;">Todos 'Flor'</button>
+            <button onclick="setAllTipo('planta')" style="background:#222;color:#fff;border:none;border-radius:8px;padding:0.3rem 0.8rem;font-size:0.95rem;cursor:pointer;">Todos 'Planta'</button>
         </th>`;
         html += '</tr>';
 
@@ -211,8 +211,8 @@
                 if (j === 0) {
                     html += `<td>
                         <select>
-                            <option value="a"${cell === "a" ? " selected" : ""}>a</option>
-                            <option value="b"${cell === "b" ? " selected" : ""}>b</option>
+                            <option value="flor"${cell === "flor" ? " selected" : ""}>flor</option>
+                            <option value="planta"${cell === "planta" ? " selected" : ""}>planta</option>
                         </select>
                     </td>`;
                 } else {
