@@ -237,8 +237,13 @@
         if (this.responseText) {
             var res = JSON.parse(this.responseText);
             if (res.status === 'ok') {
+                if (res.message) {
+                alert(res.message); // Show WALMART completion message
+                }
+                else{
                 renderTable(res.columns, res.data);
                 document.getElementById('convert-btn').style.display = 'block';
+            }
             } else {
                 document.getElementById("stuff-container").innerHTML = "Error en la conversión";
             }

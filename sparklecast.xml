@@ -34,12 +34,12 @@
             <title>Version 0.3.0</title>
             <sparkle:version>0.3.0</sparkle:version>
             <link>https://github.com/K1K3-08/Format-Tool</link>
-            <description>Various bug fixes</description>
+            <description>Major changes</description>
             <pubDate>Wed, Jul 2 2025 12:00:00 +0000</pubDate>
             <enclosure url="https://github.com/K1K3-08/Format-Tool/releases/download/v0.3.0/setup.exe"
-                       sparkle:edSignature="xXJJgx5K4O674GS8AaluC7QcacsMnEEJzU8EKmxV+1YowG/Gw+Sfb5E8oALKBakw+86jU7MgTnqszHfiv9p5CA==" 
-                       length="38825927"
-                       type="application/octet-stream" />
+                    sparkle:edSignature="t59KfLt0eiH/Mzme1XVYNCbw+qpZwjHzREayXK6prrqw/TO/lHZDGSf+4T6DNE1qAE2q45QPNKiGSk5YwbrYBw==" 
+                    length="41209764"
+                    type="application/octet-stream" />
             <sparkle:installerArguments>/SILENT /SP /NOICONS</sparkle:installerArguments>
         </item>
     </channel>

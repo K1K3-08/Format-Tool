@@ -23,7 +23,7 @@ def convert_to_SAE( case=1, df = pd.DataFrame() ):
 
     if case == 1:
 
-        with open(os.path.join(dirname, 'MOD.xml')) as t, open(os.path.join(temp_dir, "temp.MOD"), 'a') as f:
+        with open(os.path.join(dirname, 'assets\\MOD_templates\\MOD.xml')) as t, open(os.path.join(temp_dir, "temp.MOD"), 'a') as f:
             for line in t:
                 f.write(line)
 
@@ -82,7 +82,7 @@ def convert_to_SAE( case=1, df = pd.DataFrame() ):
         with open(os.path.join(temp_dir, "temp.MOD"), 'a') as f:
                 f.write('</dtfield></ROW></ROWDATA></DATAPACKET>')
     if case == 2:
-        with open(os.path.join(dirname, 'MOD.xml')) as t, open(os.path.join(temp_dir, "temp.MOD"), 'a') as f:
+        with open(os.path.join(dirname, 'assets\\MOD_templates\\MOD.xml')) as t, open(os.path.join(temp_dir, "temp.MOD"), 'a') as f:
             for line in t:
                 f.write(line)
 

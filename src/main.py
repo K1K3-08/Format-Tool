@@ -36,3 +36,4 @@ if __name__ == '__main__':
         window = webview.create_window('Herramienta', 'http://127.0.0.1:5000/',min_size=(width,height), resizable=True)
         webview.start(menu=menu)
         
+        

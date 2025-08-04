@@ -85,7 +85,7 @@ def choose_path():
     Invoke a folder selection dialog here
     :return:
     """
-    file_types = ('Spreadsheets (*.xls;*.xlsx;*.csv)', 'All files (*.*)')
+    file_types = ('Spreadsheets (*.xls;*.xlsx;*.csv;*.xlsm)', 'All files (*.*)')
     dirs = webview.windows[0].create_file_dialog(webview.OPEN_DIALOG,allow_multiple=True, file_types=file_types)
     app.load_dir(dirs[0])  # Save the directory for later use
 
@@ -129,7 +129,7 @@ def do_stuff():
     if format=='WALMART':
         save_folder =  webview.windows[0].create_file_dialog(webview.FOLDER_DIALOG, "Select Save Folder")
         app.WALMART_SAE(save_folder)
-        response = {'status': 'ok', 'message': 'WALMART conversion completed successfully'}
+        response = {'status': 'ok', 'message': 'Conversion exitosa'}
     else:
         result = app.do_stuff(format)
     
