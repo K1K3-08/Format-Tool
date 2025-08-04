@@ -18,8 +18,7 @@ def obsdict(df):
             dict = pickle.load(f)
 
     for i in df.index:
-        if df.at[i,'CODIGO DEL PRODUCTO'] not in dict:
-            dict[df.at[i,'CODIGO DEL PRODUCTO']] = df.at[i,'OBSERVACIONES']
+            dict[df.at[i,'CODIGO DEL PRODUCTO']] = [df.at[i,'Tipo'],df.at[i,'OBSERVACIONES']]
 
     with open(os.path.join(temp_dir, "obsdict.pkl"), 'wb') as f:
         pickle.dump(dict, f)

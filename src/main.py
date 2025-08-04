@@ -30,9 +30,9 @@ if __name__ == '__main__':
                 'Menu',
                 [wm.MenuAction('Buscar actualizaciones...', notpywinsparkle.win_sparkle_check_update_with_ui)]
             )
-            ]
-
+                ]
+        width, height = int(1080*1.25), int(720*1.25)
         webview.settings['ALLOW_DOWNLOADS'] = True
-        window = webview.create_window('Herramienta', 'http://127.0.0.1:5000/')
+        window = webview.create_window('Herramienta', 'http://127.0.0.1:5000/',min_size=(width,height), resizable=True)
         webview.start(menu=menu)
         

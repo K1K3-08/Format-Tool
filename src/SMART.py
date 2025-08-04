@@ -7,7 +7,7 @@ import os
 import sys
 import pickle
 
-def run(dir):
+def run(dir, case=0):
     """    This function processes an Excel file, cleans it, and writes the cleaned data to a new Excel file.
     :param dir: The directory of the input Excel file.
     :return: A list containing the path to the output Excel file and the original directory name.
@@ -37,6 +37,7 @@ def run(dir):
         cleanerdf.at[itr,'COMPRA']=i[1:]
 
     cleanerdf.rename(columns={cleanerdf.columns[1]:'PRODUCTO','COMPRA':'EMPAQUE', 'BARRAS':'CODIGO DEL PRODUCTO', 'CANT.':'CAJA'},inplace=True)
+    print("cleanerdf:", cleanerdf['PRECIO'])
     fdf = cleanerdf[['PRODUCTO','EMPAQUE','ITEM','CODIGO DEL PRODUCTO','CAJA']].copy()
 
     blist = []
@@ -49,26 +50,27 @@ def run(dir):
     BQT = pd.Series(blist,index=fdf.index)
     fdf.insert(loc=4, column='BQT', value=BQT)
     fdf.insert(len(fdf.columns), column='BQT.', value='')
-    fdf.insert(len(fdf.columns), column='CAJA.', value='')  
+    fdf.insert(len(fdf.columns), column='CAJA.', value='')
     fdf.insert(len(fdf.columns), column='OBSERVACIONES', value='')
     fdf.insert(0, column='Tipo', value='flor')
+
+    fdf['CODIGO DEL PRODUCTO'] = pd.to_numeric(fdf['CODIGO DEL PRODUCTO'], errors='coerce')
 
     dict = {}
     if os.path.exists(os.path.join(temp_dir, "obsdict.pkl")):
         with open(os.path.join(temp_dir, "obsdict.pkl"), 'rb') as f:
             dict = pickle.load(f)
+            print("dict:", dict)
     for i in fdf.index:
-        if fdf.at[i,'CODIGO DEL PRODUCTO'] in dict:
-            fdf.at[i,'Tipo'] = dict[fdf.at[i,'CODIGO DEL PRODUCTO']][0]
-            fdf.at[i,'OBSERVACIONES'] = dict[fdf.at[i,'CODIGO DEL PRODUCTO']][1]
+        if str(fdf.at[i,'CODIGO DEL PRODUCTO']) in dict:
+            fdf.at[i,'Tipo'] = dict[str(fdf.at[i,'CODIGO DEL PRODUCTO'])][0]
+            fdf.at[i,'OBSERVACIONES'] = dict[str(fdf.at[i,'CODIGO DEL PRODUCTO'])][1]
         else:
             fdf.at[i,'Tipo'] = 'flor'
             fdf.at[i,'OBSERVACIONES'] = ''
-        
+    if case == 1:
+        fdf.insert(len(fdf.columns), column='PRECIO', value=cleanerdf['PRECIO'])
 
     print("fdf:", fdf)
 
     return fdf
-
-    
-    

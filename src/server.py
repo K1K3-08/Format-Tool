@@ -121,19 +121,29 @@ def open_url():
 @verify_token
 def do_stuff():
     data = request.get_json(force=True, silent=True) or {}
+    print("Received data:", data)
+    global format
+    global convert_to
+    convert_to = data.get('convert_to', [])
     format = data.get('formato')
-    result = app.do_stuff(format)
-    if result:
-        df = pd.DataFrame()
-        print("Result:", result)
-        df = result[1]
-        response = {
-            'status': 'ok', 
-            'columns': df.columns.tolist(),
-            'data': df.values.tolist()
-        }
+    if format=='WALMART':
+        save_folder =  webview.windows[0].create_file_dialog(webview.FOLDER_DIALOG, "Select Save Folder")
+        app.WALMART_SAE(save_folder)
+        response = {'status': 'ok', 'message': 'WALMART conversion completed successfully'}
     else:
-        response = {'status': 'error'}
+        result = app.do_stuff(format)
+    
+        if result:  
+            df = pd.DataFrame()
+            print("Result:", result)
+            df = result[1]
+            response = {
+                'status': 'ok', 
+                'columns': df.columns.tolist(),
+                'data': df.values.tolist()
+            }
+        else:
+            response = {'status': 'error'}
 
     return jsonify(response)
 
@@ -144,15 +154,38 @@ def convert():
     data = request.get_json()
     columns = data['columns']
     rows = data['data']
-    print ("Columns:", columns[1:])
-    print ("Rows:", rows)
     df = pd.DataFrame(rows, columns=columns[1:])
+    print("DataFrame to convert:", df.to_string())
 
     result = app.to_excel(df)
     dir = app.get_dir()
     print(dir)
     file_types = ('Excel file (*.xlsx)', 'All files (*.*)')
-    save = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=dir, save_filename='output.xlsx',file_types=file_types)
-    app.replace_dummy(save)  # Replace the dummy file with the actual file
+    SAE = ('Archivo SAE (*.MOD)', 'All files (*.*)')
+    if format == 'SMART':
+        if 'Concentrado' in convert_to:
+            save = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=dir, save_filename='Concentrado.xlsx',file_types=file_types)
+            app.replace_dummy(save,'data.xlsx')  # Replace the dummy file with the actual file
+        if 'SAE' in convert_to:
+            app.SMARTSAE()
+            save1 = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=dir, save_filename='SAE.MOD',file_types=SAE)
+            app.replace_dummy(save1,'temp.MOD')
+    if format=='SORIANA':
+        if 'Concentrado' in convert_to:
+            save = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=dir, save_filename='Concentrado.xlsx',file_types=file_types)
+            app.replace_dummy(save,'data1.xlsx')
+        if 'Plantilla FIX' in convert_to:
+            app.S1()
+            save1 = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=dir, save_filename='Plantilla FIX.xlsx',file_types=file_types)
+            app.replace_dummy(save1,'data3.xlsx')
+        if 'Distribución Semanal' in convert_to:
+            app.S2()
+            save2 = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=dir, save_filename='Distribuciones Semanales.xlsx',file_types=file_types)
+            print('FFFF')
+            app.replace_dummy(save2,'data2.xlsx')
+        if 'SAE' in convert_to:
+            app.SORIANA_SAE()
+            save3 = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=dir, save_filename='SAE.MOD',file_types=SAE)
+            app.replace_dummy(save3,'temp.MOD')
 
     return jsonify({'result': 'success', 'output': save})
