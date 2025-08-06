@@ -122,12 +122,49 @@ def run(f,dir):
                 outdf.fillna('', inplace=True)
             
         return outdf
+    def SAE():
+        xl = pd.ExcelFile(dir)#TODO replace with selected file
+        df = xl.parse(xl.sheet_names[0])
+        df=df.drop(columns=['Unnamed: 0','Unnamed: 2','Unnamed: 3'])
 
+        df.columns= df.iloc[6]
+        ogdf = df.copy()
         
+        df.drop(index=[0,1,2,3,4,5,6], inplace=True)
+
+
+        outdf = pd.DataFrame(columns=['CÓDIGO','CANTIDAD','PRECIO'])
+
+        df = df.loc[:, ~pd.isnull(df.columns)]
+
+        df=df.dropna(subset=[df.columns[0]], how='any')
+        
+
+        for i in df.columns[1:-1:]:
+            numeric_mask = pd.to_numeric(df[i], errors='coerce').notnull()
+            
+            outdf = outdf._append(
+
+                {
+                    'CÓDIGO':str(ogdf.at[5,i]), 
+                    'CANTIDAD':sum(pd.to_numeric(df[i], errors='coerce').dropna()),
+                    'PRECIO':ogdf.at[2,i]
+                },
+
+                ignore_index=True
+
+                )
+            outdf.fillna('', inplace=True)
+        print("outdf:", outdf.to_string())
+        return outdf
+
+
     if f == 'cSORIANA':
         return cSoriana()
     if f == 'fix_template':
         return fix_template()
     if f == 'wkly_dist':
         return wkly_dist()
+    if f == 'SAE':
+        return SAE()
 

@@ -53,7 +53,9 @@ def SMART_SAE():
     return out
 
 def SORIANA_SAE():
-    pass  # Not implemented yet
+    df=SORIANA.run('SAE',directory)
+    out = SAE.convert_to_SAE(case=3,df=df)
+    return out
 
 def WALMART_SAE(save_folder):
     WALMARTCS.run(directory,save_folder)

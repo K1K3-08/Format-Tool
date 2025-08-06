@@ -3,6 +3,7 @@ from contextlib import redirect_stdout
 from io import StringIO
 import threading
 import time
+import SAE
 
 import notpywinsparkle
 from server import server

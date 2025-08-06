@@ -131,7 +131,7 @@ def do_stuff():
         app.WALMART_SAE(save_folder)
         response = {'status': 'ok', 'message': 'Conversion exitosa'}
     else:
-        result = app.do_stuff(format)
+        result = app.do_stuff(format, convert_to)
     
         if result:  
             df = pd.DataFrame()
@@ -167,7 +167,7 @@ def convert():
             save = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=dir, save_filename='Concentrado.xlsx',file_types=file_types)
             app.replace_dummy(save,'data.xlsx')  # Replace the dummy file with the actual file
         if 'SAE' in convert_to:
-            app.SMARTSAE()
+            app.SMART_SAE()
             save1 = webview.windows[0].create_file_dialog(webview.SAVE_DIALOG, directory=dir, save_filename='SAE.MOD',file_types=SAE)
             app.replace_dummy(save1,'temp.MOD')
     if format=='SORIANA':

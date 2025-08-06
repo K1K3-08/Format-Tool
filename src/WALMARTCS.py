@@ -31,7 +31,7 @@ def run(dir,save_folder):
             print("df:", df.to_string())
             print(df.columns)
             print("client:", client)
-            SAE.convert_to_SAE(case=2,df=df)
+            SAE.convert_to_SAE(case=2,df=df,e=client)
             client =str(client)
             print(client.split('(')[0]+'.MOD')
             dest = str(client.split('(')[0]+'.MOD')
